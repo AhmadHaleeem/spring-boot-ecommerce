@@ -10,3 +10,18 @@ function readURL(input, idNum) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+$(function() {
+	if ($('textarea#content').length) {
+		ClassicEditor.create(document.querySelector('textarea#content')).catch(error => {
+			console.log(error);
+		})
+	}
+	
+	if ($('#description').length) {
+		ClassicEditor.create(document.querySelector('#description')).catch(error => {
+			console.log(error);
+		})
+	}
+	
+})
