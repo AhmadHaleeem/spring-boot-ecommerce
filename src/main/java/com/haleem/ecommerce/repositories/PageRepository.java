@@ -15,7 +15,7 @@ public interface PageRepository extends JpaRepository<Page, Integer> {
 	 * findBySlug(int id, String slug);
 	 */
 
-	Page findBySlugAndId(String slug, int id);
-
 	List<Page> findAllByOrderBySortingAsc();
+
+	Page findBySlugAndIdNot(String slug, int id);
 }

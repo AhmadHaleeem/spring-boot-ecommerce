@@ -5,17 +5,17 @@
 	
 	<div th:replace="/fragments/nav :: nav-front"></div>
 
-	<div class="container">
+	<div class="container-fluid mt-5">
 		<div class="row">
-			<div class="col">
-				<h1>Spring Boot 2</h1>
-			</div>
+			<div class="col"></div>
 
+			<div class="col-7" th:utext="${page.content}"></div>
+			
+			<div class="col"></div>
 		</div>
 
 
 	</div>
-<div th:replace="/fragments/footer"></div>
 	
 </body>
 </html>

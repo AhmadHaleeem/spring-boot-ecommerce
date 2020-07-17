@@ -93,7 +93,7 @@ public class AdminPagesController {
 		redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 		
 		String slug = page.getSlug() == "" ? page.getTitle().toLowerCase().replace(" ", "-") :  page.getSlug().toLowerCase().replace(" ", "-");
-		Page findBySlug = pageRepository.findBySlugAndId(slug, page.getId());
+		Page findBySlug = pageRepository.findBySlugAndIdNot(slug, page.getId());
 		if (findBySlug != null) {
 			redirectAttributes.addFlashAttribute("message", "Slug exists, choose another");
 			redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
