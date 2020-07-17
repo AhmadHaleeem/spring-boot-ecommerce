@@ -1,8 +1,6 @@
 package com.haleem.ecommerce.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.haleem.ecommerce.models.Page;
-import com.haleem.ecommerce.models.PageRepository;
+import com.haleem.ecommerce.repositories.PageRepository;
 
 @Controller
 @RequestMapping("/admin/pages")
@@ -74,7 +72,6 @@ public class AdminPagesController {
 		return "redirect:/admin/pages/add";
 	}
 
-	
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable int id, Model theModel) {
 		Page page = pageRepository.getOne(id);
@@ -82,7 +79,6 @@ public class AdminPagesController {
 		theModel.addAttribute("page", page);
 		return "/admin/pages/edit";
 	}
-	
 	
 	@PostMapping("/edit")
 	public String edit(@Valid Page page, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {

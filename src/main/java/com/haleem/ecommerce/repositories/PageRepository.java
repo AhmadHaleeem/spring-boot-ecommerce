@@ -1,8 +1,10 @@
-package com.haleem.ecommerce.models;
+package com.haleem.ecommerce.repositories;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.haleem.ecommerce.models.Page;
 
 public interface PageRepository extends JpaRepository<Page, Integer> {
 
