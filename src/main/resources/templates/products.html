@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/fragments/head"></div>
+<body>
+	
+	<div th:replace="/fragments/nav :: nav-front"></div>
+
+	<div class="container-fluid mt-5">
+		<div class="row">
+			<div th:replace="@{/fragments/categories}"></div>
+			<div class="col"></div>
+
+			<div class="col-8">
+				<h2 class="display-3 mb-5" th:text="${categoryName ?: 'All Products'}"></h2>
+				
+				<div class="row">
+					<div class="col-4" th:each="product: ${products}">
+						<p>
+							<img style="width: 200px" th:src="@{'/media/' + ${product.image}}" />
+						</p>
+						<h4 th:text="${product.name}"></h4>
+						<div class="desc" th:utext="${product.description}"></div>
+						<p th:text="'&euro;' + ${product.price}"></p>
+						<div>
+							<p>
+								<a href="#">Add to cart</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				
+				<nav th:if="${count > perPage}">
+					<ul class="pagination">
+						<li class="page-item" th:if="${page > 0}">
+							<a class="page-link" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page - 1}__'" >Previous</a>
+						</li>
+						
+						<li class="page-item" th:each="number : ${#numbers.sequence(0, pageCount - 1)}" th:classappend="${page == number} ? 'active' : ''">
+							<a class="page-link" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${number}__'" th:text="${number + 1}"></a>
+						</li>
+						
+						<li class="page-item" th:if="${page < pageCount - 1}">
+							<a class="page-link" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page + 1}__'" >Next</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			
+			<div class="col"></div>
+		</div>
+
+
+	</div>
+	
+</body>
+</html>
