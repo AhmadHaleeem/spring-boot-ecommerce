@@ -30,8 +30,7 @@ public class CategoriesController {
 	private ProductRepository productRepository;
 
 	@GetMapping("/{slug}")
-	public String category(@PathVariable String slug, Model model,
-			@RequestParam(value = "page", required = false) Integer p) {
+	public String category(@PathVariable String slug, Model model, @RequestParam(value = "page", required = false) Integer p) {
 
 		int perPage = 6;
 		int page = (p != null) ? p : 0;
@@ -50,10 +49,10 @@ public class CategoriesController {
 			int categoryId = category.getId();
 			String categoryName = category.getName();
 
-			List<Product> catsProducts = productRepository.findAllByCategoryId(Integer.toString(categoryId), pageable);
+			List<Product> catProducts = productRepository.findAllByCategoryId(Integer.toString(categoryId), pageable);
 			count = productRepository.countByCategoryId(Integer.toString(categoryId));
 
-			model.addAttribute("products", catsProducts);
+			model.addAttribute("products", catProducts);
 			model.addAttribute("categoryName", categoryName);
 		}
 
