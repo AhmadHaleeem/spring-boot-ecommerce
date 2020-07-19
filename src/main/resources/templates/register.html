@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/fragments/head"></div>
+<body>
+	
+	<div th:replace="/fragments/nav :: nav-front"></div>
+
+	<div class="container-fluid mt-5">
+		<div class="row">
+			<div th:replace="@{/fragments/categories}"></div>
+			<div class="col"></div>
+
+			<div class="col-6">
+				<h3 class="display-3 text-center">Register</h3>
+				
+				<form th:action="@{/register}" method="post" th:object="${user}">
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+						There are errors
+					</div>
+					
+					<div class="form-group">
+					    <label for="username">Username</label>
+					    <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Username">
+					    <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+				    </div>
+				    
+				    <div class="form-group">
+					    <label for="password">Password</label>
+					    <input type="password" class="form-control" id="password" th:field="*{password}" >
+					    <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+				    </div>
+				    
+				    <div class="form-group">
+					    <label for="confirmPassword">Confirm Password</label>
+					    <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}" >
+					    <span class="error" th:if="${passwordMatchProblem}">Passwords do not match!</span>
+				    </div>
+				    
+				    <div class="form-group">
+					    <label for="email">Email</label>
+					    <input type="text" class="form-control" id="email" th:field="*{email}" placeholder="Email" required>
+					    <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+				    </div>
+				    
+				    <div class="form-group">
+					    <label for="phoneNumber">Phone Number</label>
+					    <input type="number" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Phone Number">
+					    <span class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+				    </div>
+				    
+				    <button class="btn btn-outline-success">Register</button>
+				</form>
+			</div>
+			
+			<div class="col"></div>
+		</div>
+
+
+	</div>
+	
+</body>
+</html>

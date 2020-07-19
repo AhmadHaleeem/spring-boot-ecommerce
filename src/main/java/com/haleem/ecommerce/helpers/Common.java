@@ -1,5 +1,6 @@
 package com.haleem.ecommerce.helpers;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,7 +28,13 @@ public class Common {
 	private CategoryRepository categoryRepository;
 
 	@ModelAttribute
-	public void sharedData(Model model, HttpSession session) {
+	public void sharedData(Model model, HttpSession session, Principal principal) {
+		
+		// it's loggedIn [user || admin]
+		if (principal != null) {
+			model.addAttribute("loggedInUser", principal.getName());
+		}
+		
 		List<Page> pages = pageRepository.findAllByOrderBySortingAsc();
 		List<Category> categories = categoryRepository.findAll();
 
