@@ -13,6 +13,10 @@
 			<div class="col-6 text-center">
 				<h3 class="display-3 text-center">Login</h3>
 				
+				<div class="alert alert-danger" th:if="${param.error}">
+					Invalid credentials
+				</div>
+				
 				<form th:action="@{/login}" method="post">
 					
 					<div class="form-group">

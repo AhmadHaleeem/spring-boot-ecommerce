@@ -49,5 +49,10 @@
 			<li class="nav-item active"><a class="nav-link" href="/admin/categories">Categories</a></li>
 			<li class="nav-item active"><a class="nav-link" href="/admin/products">Products</a></li>
 		</ul>
+		
+		<form th:if="${loggedInUser != null}" th:action="@{/logout}" method="post">
+			<span class="mr-3" th:text="${'Hi, ' + loggedInUser}"></span>
+			<button class="btn btn-secondary">Logout</button>
+		</form>
 	</div>
 </nav>
